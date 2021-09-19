@@ -1,0 +1,7 @@
+.meal-item-form {
+  text-align: right;
+}
+.meal-item-form__error {
+  color: red;
+  font-size: 12px;
+}
