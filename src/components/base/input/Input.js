@@ -3,10 +3,11 @@ import {forwardRef} from "react";
 const Input = forwardRef(({
   label,
   id,
+  className,
   ...props
  },  ref) => {
   return (
-    <div className="input">
+    <div className={`input ${className}`}>
       <label htmlFor={id} className="input__label">{label}</label>
       <input
         ref={ref}

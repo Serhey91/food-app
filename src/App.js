@@ -5,7 +5,7 @@ import Cart from "./components/cart/Cart";
 import CartContext from "./store/cart-context";
 
 function App() {
-  const { cartIsOpen, toggleCart } = useContext(CartContext);
+  const { cartIsOpen, toggleCart, toggleCheckout } = useContext(CartContext);
 
   const showCart = () => {
     toggleCart(true);
@@ -16,7 +16,7 @@ function App() {
   }
 
   const makeOrder = () => {
-    console.log('order');
+    toggleCheckout(true);
   }
   return (
     <div className="app">

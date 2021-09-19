@@ -3,6 +3,7 @@ import React, {useReducer} from "react";
 
 const CART_ACTION_TYPE = Object.freeze({
   TOGGLE_CART: 'TOGGLE_CART',
+  TOGGLE_CHECKOUT: 'TOGGLE_CHECKOUT',
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
 });
@@ -12,6 +13,13 @@ const cartReducer = (state, {type, payload}) => {
     return {
       ...state,
       cartIsOpen: payload.value,
+    }
+  }
+
+  if (type === CART_ACTION_TYPE.TOGGLE_CHECKOUT) {
+    return {
+      ...state,
+      checkoutIsOpen: payload.value,
     }
   }
 
@@ -57,11 +65,12 @@ const cartReducer = (state, {type, payload}) => {
   return state;
 };
 
-const defaultCartState = (overrides = {}) => ({
+export const defaultCartState = (overrides = {}) => ({
   items: [],
   totalPrice: 0,
   totalItems: 0,
   cartIsOpen: false,
+  checkoutIsOpen: false,
   ...overrides,
 });
 
@@ -77,11 +86,16 @@ const CartProvider = ({children}) => {
   const toggleCart = (isVisible) => {
     dispatchAction({type: CART_ACTION_TYPE.TOGGLE_CART, payload: {value: isVisible}})
   }
+
+  const toggleCheckout = (isVisible) => {
+    dispatchAction({type: CART_ACTION_TYPE.TOGGLE_CHECKOUT, payload: {value: isVisible}})
+  }
   const cartContext = {
     ...state,
     addItem,
     removeItem,
     toggleCart,
+    toggleCheckout,
   }
   return (
     <CartContext.Provider value={cartContext}>

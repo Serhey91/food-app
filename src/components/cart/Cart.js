@@ -4,12 +4,24 @@ import Modal from "../base/modal/Modal";
 import {useContext} from "react";
 import CartContext from "../../store/cart-context";
 import CartItem from "./cart-item/CartItem";
+import CartCheckout from "./cart-checkout/CartCheckout";
 
 const Cart = ({hideCart, makeOrder}) => {
-  const { items, totalPrice, removeItem, addItem } = useContext(CartContext);
+  const {
+    items,
+    totalPrice,
+    removeItem,
+    addItem,
+    toggleCheckout,
+    checkoutIsOpen,
+  } = useContext(CartContext);
   const totalPrice$ = `$${totalPrice.toFixed(2)}`;
   const addItemHandler = (item) => {
     addItem(item);
+  }
+
+  const onConfirmOrder = (orderDetails) => {
+    console.log(orderDetails)
   }
 
   const removeItemHandler = (id) => {
@@ -45,9 +57,13 @@ const Cart = ({hideCart, makeOrder}) => {
           <span className="cart__total-label">Total amount</span>
           <span className="cart__total-amount">{totalPrice$}</span>
         </div>
+        {checkoutIsOpen && <CartCheckout
+          close={() => toggleCheckout(false)}
+          confirm={onConfirmOrder}
+        />}
         <div className="cart__actions">
-          <Button className="cart__action cart__action--alt" click={hideCart}>Close</Button>
-          { Boolean(items.length) && <Button className="cart__action" click={makeOrder}>Order</Button> }
+          {!checkoutIsOpen && <Button className="cart__action cart__action--alt" click={hideCart}>Close</Button>}
+          { !checkoutIsOpen && Boolean(items.length) && <Button className="cart__action" click={makeOrder}>Order</Button> }
         </div>
       </div>
     </Modal>
