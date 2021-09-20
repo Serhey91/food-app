@@ -1,15 +1,6 @@
 import CartContext from "./cart-context";
 import React, {useReducer} from "react";
-import {CART_ACTION_TYPE, cartReducer} from "./cart-reducer";
-
-export const defaultCartState = (overrides = {}) => ({
-  items: [],
-  totalPrice: 0,
-  totalItems: 0,
-  cartIsOpen: false,
-  checkoutIsOpen: false,
-  ...overrides,
-});
+import {CART_ACTION_TYPE, cartReducer, defaultCartState} from "./cart-reducer";
 
 const CartProvider = ({children}) => {
   const [state, dispatchAction] = useReducer(cartReducer, defaultCartState());
@@ -17,6 +8,7 @@ const CartProvider = ({children}) => {
   const addItem = (item) => dispatchAction({type: CART_ACTION_TYPE.ADD_ITEM, payload: {value: item}});
   const removeItem = (itemId) => dispatchAction({type: CART_ACTION_TYPE.REMOVE_ITEM, payload: {value: itemId}});
   const toggleCart = (isVisible) => dispatchAction({type: CART_ACTION_TYPE.TOGGLE_CART, payload: {value: isVisible}})
+  const resetCart = () => dispatchAction({type: CART_ACTION_TYPE.RESET_CART})
 
   const toggleCheckout = (isVisible) => dispatchAction({
     type: CART_ACTION_TYPE.TOGGLE_CHECKOUT,
@@ -28,6 +20,7 @@ const CartProvider = ({children}) => {
     removeItem,
     toggleCart,
     toggleCheckout,
+    resetCart,
   }
   return (
     <CartContext.Provider value={cartContext}>

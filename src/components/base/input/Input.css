@@ -4,6 +4,15 @@
   margin-bottom: 0.5rem;
 }
 
+.input--invalid .input__label {
+  color: #ca3e51;
+}
+
+.input--invalid .input__field {
+  border-color: #ca3e51;
+  background: #f5b7c1;
+}
+
 .input__label {
   font-weight: bold;
   margin-right: 1rem;

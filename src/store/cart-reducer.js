@@ -3,10 +3,27 @@ const CART_ACTION_TYPE = Object.freeze({
   TOGGLE_CHECKOUT: 'TOGGLE_CHECKOUT',
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
+  RESET_CART: 'RESET_CART',
+});
+
+const defaultCartState = (overrides = {}) => ({
+  items: [],
+  totalPrice: 0,
+  totalItems: 0,
+  cartIsOpen: false,
+  checkoutIsOpen: false,
+  ...overrides,
 });
 
 const cartReducer = (state, {type, payload}) => {
   switch (type) {
+    case CART_ACTION_TYPE.RESET_CART: {
+      return {
+        ...defaultCartState(),
+        cartIsOpen: true,
+        checkoutIsOpen: false,
+      }
+    }
     case CART_ACTION_TYPE.TOGGLE_CART: {
       return {
         ...state,
@@ -65,4 +82,5 @@ const cartReducer = (state, {type, payload}) => {
 export {
   cartReducer,
   CART_ACTION_TYPE,
+  defaultCartState,
 }
