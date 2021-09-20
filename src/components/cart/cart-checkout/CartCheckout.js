@@ -4,11 +4,13 @@ import Button from "../../base/button/Button";
 import Card from "../../base/card/Card";
 import './CartCheckout.css';
 
+const isFilled = (value) => !!value.trim();
+
 const CartCheckout = ({confirm, close}) => {
   const nameRef = useRef();
   const streetRef = useRef();
   const cityRef = useRef();
-
+  
   const onConfirm = () => {
     // TODO: validate
     confirm({

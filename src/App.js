@@ -1,8 +1,8 @@
-import Header from "./components/layouts/header/Header";
+import Header from "components/layouts/header/Header";
 import React, {useContext} from "react";
-import Meals from "./components/meals/Meals";
-import Cart from "./components/cart/Cart";
-import CartContext from "./store/cart-context";
+import Meals from "components/meals/Meals";
+import Cart from "components/cart/Cart";
+import CartContext from "store/cart-context";
 
 function App() {
   const { cartIsOpen, toggleCart, toggleCheckout } = useContext(CartContext);

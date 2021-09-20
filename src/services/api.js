@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import mainConfig from 'config/main-config';
 const REST_SOURCES = Object.freeze({
   orders: 'orders',
   meals: 'meals',
@@ -11,7 +11,7 @@ const defaultHeaders = (overrides = {}) => ({
   },
 });
 const api = async (source, method = 'GET', body = {}, headers = {}) => {
-  const url = [[BASE_URL, source].join('/'), 'json'].join('.');
+  const url = [[mainConfig.baseApiUrl, source].join('/'), 'json'].join('.');
   const response = await fetch(url, {
     method,
     ...body,
@@ -51,7 +51,6 @@ const addOrder = async (order) => {
 }
 
 export {
-  BASE_URL,
   REST_SOURCES,
   fetchOrders,
   addOrder,

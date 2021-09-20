@@ -3,7 +3,7 @@ import React from "react";
 import {createPortal} from "react-dom";
 const Backdrop = ({ close }) => {
   return (
-    <div className="backdrop" onClick={close}></div>
+    <div className="backdrop" onClick={close} />
   )
 };
 

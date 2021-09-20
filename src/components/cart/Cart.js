@@ -1,10 +1,10 @@
 import './Cart.css';
-import Button from "../base/button/Button";
 import Modal from "../base/modal/Modal";
 import {useContext} from "react";
 import CartContext from "../../store/cart-context";
 import CartItem from "./cart-item/CartItem";
 import CartCheckout from "./cart-checkout/CartCheckout";
+import Button from "../base/button/Button";
 
 const Cart = ({hideCart, makeOrder}) => {
   const {
